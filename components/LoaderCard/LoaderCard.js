@@ -3,7 +3,10 @@ import {
   LoaderCardWrapper,
   getLoaderOneCss,
   getLoaderOneAnimation,
+  getLoaderTwoCss,
+  getLoaderTwoAnimation,
   LoaderOne,
+  LoaderTwo,
   DialogOverlay,
   DialogContent,
   // DialogTitle,
@@ -31,19 +34,74 @@ import useStore from "@/store/store"
 // Constants
 import { DEFAULT_LOADER_COLORS } from "@/utils/constants"
 
-const LoaderCard = () => {
+const LoaderCard = ({ loader }) => {
   const color = useStore(state => state.color)
   const accentColor = useStore(state => state.accentColor)
+
+  const getLoader = ({ home = false } = {}) => {
+    const defaultColor = home ? DEFAULT_LOADER_COLORS.colorHome : color
+    const defaultAccentColor = home
+      ? DEFAULT_LOADER_COLORS.accentColor
+      : accentColor
+
+    switch (loader) {
+      case 1:
+        return (
+          <LoaderOne color={defaultColor} accentColor={defaultAccentColor} />
+        )
+      case 2:
+        return <LoaderTwo color={defaultColor} />
+      default:
+        return (
+          <LoaderOne color={defaultColor} accentColor={defaultAccentColor} />
+        )
+    }
+  }
+
+  const getCodeBlock = () => {
+    const defaultLabel = "Code"
+    const mainClassName = ".loader"
+
+    switch (loader) {
+      case 1:
+        return (
+          <CodeBlock
+            label={defaultLabel}
+            value={`${mainClassName} {${getLoaderOneCss({
+              color,
+              accentColor,
+            })}}
+  ${getLoaderOneAnimation()}`}
+          />
+        )
+      case 2:
+        return (
+          <CodeBlock
+            label={defaultLabel}
+            value={`${mainClassName} {${getLoaderTwoCss({
+              color,
+            })}}
+${getLoaderTwoAnimation()}`}
+          />
+        )
+      default:
+        return (
+          <CodeBlock
+            label={defaultLabel}
+            value={`${mainClassName} {${getLoaderOneCss({
+              color,
+              accentColor,
+            })}}
+  ${getLoaderOneAnimation()}`}
+          />
+        )
+    }
+  }
 
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <LoaderCardWrapper>
-          <LoaderOne
-            color={DEFAULT_LOADER_COLORS.colorHome}
-            accentColor={accentColor}
-          />
-        </LoaderCardWrapper>
+        <LoaderCardWrapper>{getLoader({ home: true })}</LoaderCardWrapper>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
@@ -51,20 +109,12 @@ const LoaderCard = () => {
             {/* <DialogTitle>Edit profile</DialogTitle> */}
             <DialogDescription>
               <LoaderCardWrapper dialog={true}>
-                <LoaderOne color={color} accentColor={accentColor} />
+                {getLoader({ home: false })}
               </LoaderCardWrapper>
               <Spacer size={16} axis="vertical" />
-              <SettingsPopover />
+              <SettingsPopover loader={loader} />
               <Spacer size={16} axis="vertical" />
-              <CodeBlock
-                label="Code"
-                value={`.loader {${getLoaderOneCss({
-                  size: 32,
-                  color,
-                  accentColor,
-                })}}
-        ${getLoaderOneAnimation()}`}
-              />
+              {getCodeBlock()}
             </DialogDescription>
             <Dialog.Close asChild>
               <CloseButton aria-label="Close">

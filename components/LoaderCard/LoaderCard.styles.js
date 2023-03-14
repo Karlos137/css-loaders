@@ -5,6 +5,9 @@ import * as Dialog from "@radix-ui/react-dialog"
 
 import { DEFAULT_LOADER_COLORS } from "@/utils/constants"
 
+/* LOADERS START */
+
+// Loader One
 export const getLoaderOneCss = ({
   size = 48,
   color = DEFAULT_LOADER_COLORS.colorDialog,
@@ -31,6 +34,50 @@ export const getLoaderOneAnimation = () => `
   }
 `
 
+export const LoaderOne = styled.div`
+  ${({ color, accentColor }) =>
+    getLoaderOneCss({
+      color,
+      accentColor,
+    })}
+  ${getLoaderOneAnimation()}
+`
+
+// Loader Two
+export const getLoaderTwoCss = ({
+  size = 48,
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+} = {}) => `
+  width: ${size}px;
+  height: ${size}px;
+  display: inline-block;
+  border-radius: 50%;
+  border-top: 3px solid ${color};
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation2 1s linear infinite;
+`
+
+export const getLoaderTwoAnimation = () => `
+@keyframes rotation2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} `
+
+export const LoaderTwo = styled.div`
+  ${({ color }) =>
+    getLoaderTwoCss({
+      color,
+    })}
+  ${getLoaderTwoAnimation()}
+`
+
+/* LOADERS END */
+
 export const LoaderCardWrapper = styled.div`
   width: fit-content;
   margin: 0 auto;
@@ -51,15 +98,6 @@ export const LoaderCardWrapper = styled.div`
   @media (${({ theme }) => theme.queries.tabletAndUp}) {
     padding: 24px;
   }
-`
-
-export const LoaderOne = styled.div`
-  ${({ color, accentColor }) =>
-    getLoaderOneCss({
-      color,
-      accentColor,
-    })}
-  ${getLoaderOneAnimation()}
 `
 
 // Dialog

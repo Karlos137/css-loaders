@@ -7,15 +7,9 @@ import LoaderCard from "../LoaderCard"
 const Loaders = () => {
   return (
     <LoadersWrapper>
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
-      <LoaderCard />
+      {[...Array(9)].map((_, i) => {
+        return <LoaderCard key={i} loader={i + 1} />
+      })}
     </LoadersWrapper>
   )
 }

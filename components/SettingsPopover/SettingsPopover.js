@@ -23,7 +23,7 @@ import { poppins } from "@/pages/_app"
 // Store
 import useStore from "@/store/store"
 
-const SettingsPopover = () => {
+const SettingsPopover = ({ loader }) => {
   const color = useStore(state => state.color)
   const setColor = useStore(state => state.setColor)
   const accentColor = useStore(state => state.accentColor)
@@ -53,18 +53,20 @@ const SettingsPopover = () => {
                 }}
               />
             </Fieldset>
-            <Fieldset className="Fieldset">
-              <Label htmlFor="width">Accent color</Label>
-              <Input
-                type="color"
-                id="color"
-                value={accentColor}
-                defaultValue={accentColor}
-                onChange={e => {
-                  setAccentColor(e.target.value)
-                }}
-              />
-            </Fieldset>
+            {[1].includes(loader) ? (
+              <Fieldset className="Fieldset">
+                <Label htmlFor="width">Accent color</Label>
+                <Input
+                  type="color"
+                  id="color"
+                  value={accentColor}
+                  defaultValue={accentColor}
+                  onChange={e => {
+                    setAccentColor(e.target.value)
+                  }}
+                />
+              </Fieldset>
+            ) : null}
             <PopoverClose aria-label="Close">
               <Cross2Icon />
             </PopoverClose>
