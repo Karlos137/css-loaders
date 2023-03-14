@@ -1,17 +1,28 @@
-// Next.js - Google fonts
-import { Poppins } from "next/font/google"
+// Prism
+import "prismjs/themes/prism-tomorrow.css"
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600"],
+// Styled Components
+import { ThemeProvider } from "styled-components"
+import GlobalStyle from "../styled-components/globalStyles"
+import { theme } from "../styled-components/theme"
+
+// Next.js - Google fonts
+import { Inter } from "next/font/google"
+
+const inter = Inter({
+  weight: ["400", "500"],
   subsets: ["latin-ext"],
   display: "swap",
-  style: ["normal", "italic"],
+  style: ["normal"],
 })
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={`${poppins.className} app`}>
-      <Component {...pageProps} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <div className={`${inter.className} app`}>
+        <Component {...pageProps} />
+      </div>
+    </ThemeProvider>
   )
 }
