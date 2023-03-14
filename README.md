@@ -9,6 +9,8 @@ Keywords:
 - Next.js
 - styled-components
 - Prism.js
+- Radix UI
+- Radix Icons
 - ESLint
 - Prettier
 

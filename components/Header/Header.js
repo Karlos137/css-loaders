@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <Title>CSS Loaders</Title>
-      <Subtitle>Click on the loader to display the CSS code.</Subtitle>
+      <Subtitle>
+        Click on the loader to show CSS code & edit appereance.
+      </Subtitle>
     </HeaderWrapper>
   )
 }

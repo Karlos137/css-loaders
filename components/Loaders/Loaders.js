@@ -10,6 +10,12 @@ const Loaders = () => {
       <LoaderCard />
       <LoaderCard />
       <LoaderCard />
+      <LoaderCard />
+      <LoaderCard />
+      <LoaderCard />
+      <LoaderCard />
+      <LoaderCard />
+      <LoaderCard />
     </LoadersWrapper>
   )
 }

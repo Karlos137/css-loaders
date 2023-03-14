@@ -12,5 +12,5 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.p`
-  font-size: ${({ theme }) => 18 / theme.fontSizes.root + "rem"};
+  font-size: ${({ theme }) => 17 / theme.fontSizes.root + "rem"};
 `
