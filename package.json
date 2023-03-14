@@ -1,6 +1,12 @@
 {
   "name": "css-loaders",
   "version": "0.1.0",
+  "description": "Simple CSS loaders",
+  "author": {
+    "name": "Karel Kvítek",
+    "email": "karel.kvitek@seznam.cz",
+    "url": "https://karelkvitek.cz"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,6 +19,7 @@
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "styled-components": "^5.3.9"
   }
 }
