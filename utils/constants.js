@@ -11,3 +11,7 @@ export const QUERIES = {
   laptopAndUp: `(min-width: ${BREAKPOINTS.laptopMin}px)`,
   desktopAndUp: `(min-width: ${BREAKPOINTS.desktopMin}px)`,
 }
+
+export const COLORS = {
+  white: "hsl(0deg 0% 100%)",
+}

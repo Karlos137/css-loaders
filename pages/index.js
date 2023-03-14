@@ -1,19 +1,11 @@
 // React components
-import CodeBlock from "@/components/CodeBlock"
+import Home from "@/components/pages/Home"
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <div>
-      CSS Loaders
-      <CodeBlock
-        label="Test"
-        value={`  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }`}
-      />{" "}
-    </div>
+    <>
+      <Home />
+    </>
   )
 }
-export default Home
+export default HomePage

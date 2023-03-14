@@ -1,6 +1,9 @@
 // React
 import { useEffect } from "react"
 
+// Styled Components
+import { Code, Label } from "./CodeBlock.styles"
+
 // Prism
 import Prism from "prismjs"
 
@@ -13,9 +16,9 @@ const CodeBlock = ({ value, label }) => {
 
   return (
     <div>
-      <div>{label}</div>
+      <Label>{label}</Label>
       <pre>
-        <code className="language-css">{value}</code>
+        <Code className="language-css">{value}</Code>
       </pre>
     </div>
   )

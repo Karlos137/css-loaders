@@ -108,6 +108,12 @@ const GlobalStyle = createGlobalStyle`
 
 /* CUSTOM */
 
+body {
+  font-family: 'Inter', sans-serif;
+  color: ${({ theme }) => theme.colors.body};
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+}
+
 .app {
   height: 100%;
 }

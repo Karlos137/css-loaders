@@ -3,8 +3,8 @@ import "prismjs/themes/prism-tomorrow.css"
 
 // Styled Components
 import { ThemeProvider } from "styled-components"
-import GlobalStyle from "../styled-components/globalStyles"
-import { theme } from "../styled-components/theme"
+import GlobalStyle from "@/styled-components/globalStyles"
+import { theme } from "@/styled-components/theme"
 
 // Next.js - Google fonts
 import { Inter } from "next/font/google"
