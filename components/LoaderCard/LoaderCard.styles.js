@@ -76,6 +76,46 @@ export const LoaderTwo = styled.div`
   ${getLoaderTwoAnimation()}
 `
 
+// Loader Three
+export const getLoaderThreeCss = ({ size = 48 } = {}) => `
+  width: ${size}px;
+  height: ${size}px;
+  display: inline-block;
+`
+
+export const getLoaderThreeAfter = ({
+  size = 48,
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+} = {}) => `
+  content: "";
+  width: ${size}px;
+  display: block;
+  height: ${size}px;
+  border-radius: 50%;
+  border: 4px solid ${color};
+  border-color: ${color} transparent ${color} transparent;
+  animation: dual-rotation 1.2s linear infinite;
+`
+
+export const getLoaderThreeAnimation = () => `
+@keyframes dual-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+`
+
+export const LoaderThree = styled.div`
+  ${getLoaderThreeCss()}
+  ${({ color }) => `&:after {
+    ${getLoaderThreeAfter({ color })}
+  }`}
+  ${getLoaderThreeAnimation()}
+`
+
 /* LOADERS END */
 
 export const LoaderCardWrapper = styled.div`

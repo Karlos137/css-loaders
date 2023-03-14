@@ -5,8 +5,12 @@ import {
   getLoaderOneAnimation,
   getLoaderTwoCss,
   getLoaderTwoAnimation,
+  getLoaderThreeCss,
+  getLoaderThreeAfter,
+  getLoaderThreeAnimation,
   LoaderOne,
   LoaderTwo,
+  LoaderThree,
   DialogOverlay,
   DialogContent,
   // DialogTitle,
@@ -51,6 +55,8 @@ const LoaderCard = ({ loader }) => {
         )
       case 2:
         return <LoaderTwo color={defaultColor} />
+      case 3:
+        return <LoaderThree color={defaultColor} />
       default:
         return (
           <LoaderOne color={defaultColor} accentColor={defaultAccentColor} />
@@ -61,6 +67,7 @@ const LoaderCard = ({ loader }) => {
   const getCodeBlock = () => {
     const defaultLabel = "Code"
     const mainClassName = ".loader"
+    const afterClassName = `${mainClassName}:after`
 
     switch (loader) {
       case 1:
@@ -82,6 +89,18 @@ const LoaderCard = ({ loader }) => {
               color,
             })}}
 ${getLoaderTwoAnimation()}`}
+          />
+        )
+      case 3:
+        return (
+          <CodeBlock
+            label={defaultLabel}
+            value={`${mainClassName} {${getLoaderThreeCss()}}
+
+${afterClassName} {${getLoaderThreeAfter({
+              color,
+            })}}
+${getLoaderThreeAnimation()}`}
           />
         )
       default:
