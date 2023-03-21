@@ -31,3 +31,5 @@ export const DEFAULT_LOADER_COLORS = {
   colorDialog: "#4A00E0",
   accentColor: "#48A8A5",
 }
+
+export const DEFAULT_ANIMATION_SPEED = "normal"

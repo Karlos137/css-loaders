@@ -178,3 +178,8 @@ export const Text = styled.p`
   line-height: 19px;
   font-weight: 500;
 `
+
+export const LabelText = styled.p`
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.dialog.text};
+`

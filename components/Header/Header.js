@@ -6,7 +6,7 @@ const Header = () => {
     <HeaderWrapper>
       <Title>CSS Loaders</Title>
       <Subtitle>
-        Click on the loader to show CSS code & to edit appereance and animation
+        Click on the loader to show CSS code & to edit colors and animation
         speed.
       </Subtitle>
     </HeaderWrapper>

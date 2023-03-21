@@ -3,7 +3,10 @@ import styled from "styled-components"
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog"
 
-import { DEFAULT_LOADER_COLORS } from "@/utils/constants"
+import {
+  DEFAULT_LOADER_COLORS,
+  DEFAULT_ANIMATION_SPEED,
+} from "@/utils/constants"
 
 /* LOADERS START */
 
@@ -12,6 +15,7 @@ export const getLoaderOneCss = ({
   size = 48,
   color = DEFAULT_LOADER_COLORS.colorDialog,
   accentColor = DEFAULT_LOADER_COLORS.accentColor,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
 } = {}) => `
     width: ${size}px;
     height: ${size}px;
@@ -20,7 +24,13 @@ export const getLoaderOneCss = ({
     border-bottom-color: ${accentColor};
     border-radius: 50%;
     box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+    animation: rotation ${
+      animationSpeed === "normal"
+        ? "1s"
+        : animationSpeed === "slow"
+        ? "1.3s"
+        : animationSpeed === "fast" && "0.7s"
+    } linear infinite;
 `
 
 export const getLoaderOneAnimation = () => `
@@ -35,10 +45,11 @@ export const getLoaderOneAnimation = () => `
 `
 
 export const LoaderOne = styled.div`
-  ${({ color, accentColor }) =>
+  ${({ color, accentColor, animationSpeed }) =>
     getLoaderOneCss({
       color,
       accentColor,
+      animationSpeed,
     })}
   ${getLoaderOneAnimation()}
 `
@@ -47,6 +58,7 @@ export const LoaderOne = styled.div`
 export const getLoaderTwoCss = ({
   size = 48,
   color = DEFAULT_LOADER_COLORS.colorDialog,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
 } = {}) => `
   width: ${size}px;
   height: ${size}px;
@@ -55,11 +67,17 @@ export const getLoaderTwoCss = ({
   border-top: 3px solid ${color};
   border-right: 3px solid transparent;
   box-sizing: border-box;
-  animation: rotation2 1s linear infinite;
+  animation: rotation ${
+    animationSpeed === "normal"
+      ? "1s"
+      : animationSpeed === "slow"
+      ? "1.3s"
+      : animationSpeed === "fast" && "0.7s"
+  } linear infinite;
 `
 
 export const getLoaderTwoAnimation = () => `
-@keyframes rotation2 {
+@keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
@@ -69,9 +87,10 @@ export const getLoaderTwoAnimation = () => `
 } `
 
 export const LoaderTwo = styled.div`
-  ${({ color }) =>
+  ${({ color, animationSpeed }) =>
     getLoaderTwoCss({
       color,
+      animationSpeed,
     })}
   ${getLoaderTwoAnimation()}
 `
@@ -86,6 +105,7 @@ export const getLoaderThreeCss = ({ size = 48 } = {}) => `
 export const getLoaderThreeAfter = ({
   size = 48,
   color = DEFAULT_LOADER_COLORS.colorDialog,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
 } = {}) => `
   content: "";
   width: ${size}px;
@@ -94,7 +114,13 @@ export const getLoaderThreeAfter = ({
   border-radius: 50%;
   border: 4px solid ${color};
   border-color: ${color} transparent ${color} transparent;
-  animation: dual-rotation 1.2s linear infinite;
+  animation: dual-rotation ${
+    animationSpeed === "normal"
+      ? "1.2s"
+      : animationSpeed === "slow"
+      ? "1.5s"
+      : animationSpeed === "fast" && "0.9s"
+  } linear infinite;
 `
 
 export const getLoaderThreeAnimation = () => `
@@ -110,10 +136,63 @@ export const getLoaderThreeAnimation = () => `
 
 export const LoaderThree = styled.div`
   ${getLoaderThreeCss()}
-  ${({ color }) => `&:after {
-    ${getLoaderThreeAfter({ color })}
+  ${({ color, animationSpeed }) => `&:after {
+    ${getLoaderThreeAfter({ color, animationSpeed })}
   }`}
   ${getLoaderThreeAnimation()}
+`
+// Loader Four
+export const getLoaderFourCss = () => `
+  display: inline-block;
+  font-size: 0;
+  white-space: nowrap;
+`
+
+export const getLoaderFourCssBall = ({
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+} = {}) => `
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: ${color};
+  animation: bounce 1.3s infinite ease-in-out;
+`
+
+export const getLoaderFourCssBall2 = () => `
+  animation-delay: -0.5s;
+`
+
+export const getLoaderFourCssBall3 = () => `
+  animation-delay: -1s;
+`
+
+export const getLoaderFourAnimation = () => `
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+`
+
+export const LoaderFour = styled.div`
+  ${getLoaderFourCss()}
+  & > .ball {
+    ${({ color }) => getLoaderFourCssBall({ color })}
+  }
+
+  & > .ball:nth-child(2) {
+    ${getLoaderFourCssBall2()}
+  }
+
+  & > .ball:nth-child(3) {
+    ${getLoaderFourCssBall3()}
+  }
+  ${getLoaderFourAnimation()}
 `
 
 /* LOADERS END */
@@ -128,6 +207,9 @@ export const LoaderCardWrapper = styled.div`
   border-radius: 4px;
   transition: background-color 0.4s ease;
   padding: 16px;
+  box-shadow: none;
+  outline: none;
+  border: none;
   /* cursor: ${({ dialog }) => !dialog && "pointer"}; */
 
   &:hover {
