@@ -3,6 +3,7 @@ import styled from "styled-components"
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog"
 
+// Constants
 import {
   DEFAULT_LOADER_COLORS,
   DEFAULT_ANIMATION_SPEED,
@@ -24,7 +25,7 @@ export const getLoaderOneCss = ({
     border-bottom-color: ${accentColor};
     border-radius: 50%;
     box-sizing: border-box;
-    animation: rotation ${
+    animation: rotation-1 ${
       animationSpeed === "normal"
         ? "1s"
         : animationSpeed === "slow"
@@ -34,7 +35,7 @@ export const getLoaderOneCss = ({
 `
 
 export const getLoaderOneAnimation = () => `
-@keyframes rotation {
+@keyframes rotation-1 {
     0% {
       transform: rotate(0deg);
     }
@@ -51,6 +52,7 @@ export const LoaderOne = styled.div`
       accentColor,
       animationSpeed,
     })}
+
   ${getLoaderOneAnimation()}
 `
 
@@ -67,7 +69,7 @@ export const getLoaderTwoCss = ({
   border-top: 3px solid ${color};
   border-right: 3px solid transparent;
   box-sizing: border-box;
-  animation: rotation ${
+  animation: rotation-2 ${
     animationSpeed === "normal"
       ? "1s"
       : animationSpeed === "slow"
@@ -77,7 +79,7 @@ export const getLoaderTwoCss = ({
 `
 
 export const getLoaderTwoAnimation = () => `
-@keyframes rotation {
+@keyframes rotation-2 {
   0% {
     transform: rotate(0deg);
   }
@@ -92,6 +94,7 @@ export const LoaderTwo = styled.div`
       color,
       animationSpeed,
     })}
+
   ${getLoaderTwoAnimation()}
 `
 
@@ -136,11 +139,14 @@ export const getLoaderThreeAnimation = () => `
 
 export const LoaderThree = styled.div`
   ${getLoaderThreeCss()}
+
   ${({ color, animationSpeed }) => `&:after {
     ${getLoaderThreeAfter({ color, animationSpeed })}
   }`}
+
   ${getLoaderThreeAnimation()}
 `
+
 // Loader Four
 export const getLoaderFourCss = () => `
   display: inline-block;
@@ -150,6 +156,7 @@ export const getLoaderFourCss = () => `
 
 export const getLoaderFourCssBall = ({
   color = DEFAULT_LOADER_COLORS.colorDialog,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
 } = {}) => `
   display: inline-block;
   width: 8px;
@@ -157,15 +164,37 @@ export const getLoaderFourCssBall = ({
   margin: 0 4px;
   border-radius: 50%;
   background-color: ${color};
-  animation: bounce 1.3s infinite ease-in-out;
+  animation: bounce ${
+    animationSpeed === "normal"
+      ? "1.3s"
+      : animationSpeed === "slow"
+      ? "1.6s"
+      : animationSpeed === "fast" && "1s"
+  } infinite ease-in-out;
 `
 
-export const getLoaderFourCssBall2 = () => `
-  animation-delay: -0.5s;
+export const getLoaderFourCssBall2 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-0.5s"
+      : animationSpeed === "slow"
+      ? "-0.8s"
+      : animationSpeed === "fast" && "-0.2s"
+  };
 `
 
-export const getLoaderFourCssBall3 = () => `
-  animation-delay: -1s;
+export const getLoaderFourCssBall3 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-1s"
+      : animationSpeed === "slow"
+      ? "-1.3s"
+      : animationSpeed === "fast" && "-0.7s"
+  };
 `
 
 export const getLoaderFourAnimation = () => `
@@ -181,18 +210,411 @@ export const getLoaderFourAnimation = () => `
 
 export const LoaderFour = styled.div`
   ${getLoaderFourCss()}
+
   & > .ball {
-    ${({ color }) => getLoaderFourCssBall({ color })}
+    ${({ color, animationSpeed }) =>
+      getLoaderFourCssBall({ color, animationSpeed })}
   }
 
   & > .ball:nth-child(2) {
-    ${getLoaderFourCssBall2()}
+    ${({ animationSpeed }) => getLoaderFourCssBall2({ animationSpeed })}
   }
 
   & > .ball:nth-child(3) {
-    ${getLoaderFourCssBall3()}
+    ${({ animationSpeed }) => getLoaderFourCssBall3({ animationSpeed })}
   }
+
   ${getLoaderFourAnimation()}
+`
+
+// Loader Five
+export const getLoaderFiveCss = ({ size = 48 } = {}) => `
+  display: inline-block;
+  position: relative;
+  width: ${size}px;
+  height: ${size}px;
+`
+
+export const getLoaderFiveCssBall = ({
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: ${color};
+  border-radius: 50%;
+  animation: pop ${
+    animationSpeed === "normal"
+      ? "1.2s"
+      : animationSpeed === "slow"
+      ? "1.5s"
+      : animationSpeed === "fast" && "0.9s"
+  } cubic-bezier(0.5, 0, 0.5, 1) infinite;
+`
+
+export const getLoaderFiveCssBall1 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  top: 10px;
+  left: 10px;
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-0.3s"
+      : animationSpeed === "slow"
+      ? "-0.6s"
+      : animationSpeed === "fast" && "0s"
+  };
+`
+
+export const getLoaderFiveCssBall2 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  top: 10px;
+  right: 10px;
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-0.15s"
+      : animationSpeed === "slow"
+      ? "-0.45s"
+      : animationSpeed === "fast" && "-0.05s"
+  };
+`
+
+export const getLoaderFiveCssBall3 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  bottom: 10px;
+  right: 10px;
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "0s"
+      : animationSpeed === "slow"
+      ? "-0.3s"
+      : animationSpeed === "fast" && "0.3s"
+  };
+`
+
+export const getLoaderFiveCssBall4 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  bottom: 10px;
+  left: 10px;
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "0.25s"
+      : animationSpeed === "slow"
+      ? "-0.15s"
+      : animationSpeed === "fast" && "0.55s"
+  };
+`
+
+export const getLoaderFiveAnimation = () => `
+@keyframes pop {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+`
+
+export const LoaderFive = styled.div`
+  ${getLoaderFiveCss()}
+
+  & > .ball {
+    ${({ color, animationSpeed }) =>
+      getLoaderFiveCssBall({ color, animationSpeed })}
+  }
+
+  & > .ball:nth-child(1) {
+    ${({ animationSpeed }) => getLoaderFiveCssBall1({ animationSpeed })}
+  }
+
+  & > .ball:nth-child(2) {
+    ${({ animationSpeed }) => getLoaderFiveCssBall2({ animationSpeed })}
+  }
+
+  & > .ball:nth-child(3) {
+    ${({ animationSpeed }) => getLoaderFiveCssBall3({ animationSpeed })}
+  }
+
+  & > .ball:nth-child(4) {
+    ${({ animationSpeed }) => getLoaderFiveCssBall4({ animationSpeed })}
+  }
+
+  ${getLoaderFiveAnimation()}
+`
+
+// Loader Six
+export const getLoaderSixCss = ({ size = 48, animationSpeed } = {}) => `
+  position: relative;
+  width: ${size}px;
+  height: ${size}px;
+  animation: rotation-3 ${
+    animationSpeed === "normal"
+      ? "2.2s"
+      : animationSpeed === "slow"
+      ? "2.6s"
+      : animationSpeed === "fast" && "1.8s"
+  } linear infinite;
+`
+
+export const getLoaderSixCssBall = ({
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+} = {}) => `
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: ${color};
+  border-radius: 50%;
+`
+
+export const getLoaderSixCssBall1 = () => `
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`
+
+export const getLoaderSixCssBall2 = () => `
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+`
+
+export const getLoaderSixCssBall3 = () => `
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`
+
+export const getLoaderSixCssBall4 = () => `
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+`
+
+export const getLoaderSixAnimation = () => `
+@keyframes rotation-3 {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+`
+
+export const LoaderSix = styled.div`
+  ${({ animationSpeed }) => getLoaderSixCss({ animationSpeed })}
+
+  & > .ball {
+    ${({ color }) => getLoaderSixCssBall({ color })}
+  }
+
+  & > .ball:nth-child(1) {
+    ${({ animationSpeed }) => getLoaderSixCssBall1({ animationSpeed })}
+  }
+
+  & > .ball:nth-child(2) {
+    ${({ animationSpeed }) => getLoaderSixCssBall2({ animationSpeed })}
+  }
+
+  & > .ball:nth-child(3) {
+    ${({ animationSpeed }) => getLoaderSixCssBall3({ animationSpeed })}
+  }
+
+  & > .ball:nth-child(4) {
+    ${({ animationSpeed }) => getLoaderSixCssBall4({ animationSpeed })}
+  }
+  ${getLoaderSixAnimation()}
+`
+
+// Loader Seven
+export const getLoaderSevenCss = ({ size = 48 } = {}) => `
+  width: ${size}px;
+  height: ${size}px;
+  display: inline-block;
+  position: relative;
+`
+
+export const getLoaderSevenBeforeAfter = ({
+  size = 48,
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  content: '';  
+  position: absolute;
+  width: ${size}px;
+  height: ${size}px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid ${color};
+  inset: 0;
+  opacity: 0;
+  animation: pulse ${
+    animationSpeed === "normal"
+      ? "2.2s"
+      : animationSpeed === "slow"
+      ? "2.6s"
+      : animationSpeed === "fast" && "1.8s"
+  } linear infinite;
+`
+
+export const getLoaderSevenAfter = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+animation-delay: ${
+  animationSpeed === "normal"
+    ? "1.2s"
+    : animationSpeed === "slow"
+    ? "1.6s"
+    : animationSpeed === "fast" && "0.8s"
+};
+`
+
+export const getLoaderSevenAnimation = () => `
+@keyframes pulse {
+  0%, 1% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+`
+
+export const LoaderSeven = styled.div`
+  ${getLoaderSevenCss()}
+
+  ${({ color, animationSpeed }) => `&:before, &:after {
+    ${getLoaderSevenBeforeAfter({ color, animationSpeed })}
+  }`}
+
+${({ animationSpeed }) => `&:after {
+    ${getLoaderSevenAfter({ animationSpeed })}
+  }`}
+
+  ${getLoaderSevenAnimation()}
+`
+
+// Loader Eight
+export const getLoaderEightCss = ({ size = 48 } = {}) => `
+  width: ${size}px;
+  height: ${size}px;
+  text-align: center;
+  font-size: 10px;
+`
+
+export const getLoaderEightCol = ({
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  background-color: ${color};
+  height: 100%;
+  width: 4px;
+  margin: 0 2px;
+  display: inline-block;
+  animation: stretch ${
+    animationSpeed === "normal"
+      ? "1.2s"
+      : animationSpeed === "slow"
+      ? "1.4s"
+      : animationSpeed === "fast" && "1.2s"
+  } infinite ease-in-out;
+`
+
+export const getLoaderEightCol2 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-1.1s"
+      : animationSpeed === "slow"
+      ? "-1.1s"
+      : animationSpeed === "fast" && "-1.1s"
+  }
+`
+
+export const getLoaderEightCol3 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-1s"
+      : animationSpeed === "slow"
+      ? "-0.9s"
+      : animationSpeed === "fast" && "-1.05s"
+  }
+`
+
+export const getLoaderEightCol4 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-0.9s"
+      : animationSpeed === "slow"
+      ? "-0.7s"
+      : animationSpeed === "fast" && "-1.00s"
+  }
+`
+
+export const getLoaderEightCol5 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  animation-delay: ${
+    animationSpeed === "normal"
+      ? "-0.8s"
+      : animationSpeed === "slow"
+      ? "-0.5s"
+      : animationSpeed === "fast" && "-0.95s"
+  }
+`
+
+export const getLoaderEightAnimation = () => `
+@keyframes stretch {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.45);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
+`
+
+export const LoaderEight = styled.div`
+  ${getLoaderEightCss()}
+
+  & > .col {
+    ${({ color, animationSpeed }) =>
+      getLoaderEightCol({ color, animationSpeed })}
+  }
+
+  & > .col:nth-child(2) {
+    ${({ animationSpeed }) => getLoaderEightCol2({ animationSpeed })}
+  }
+
+  & > .col:nth-child(3) {
+    ${({ animationSpeed }) => getLoaderEightCol3({ animationSpeed })}
+  }
+
+  & > .col:nth-child(4) {
+    ${({ animationSpeed }) => getLoaderEightCol4({ animationSpeed })}
+  }
+
+  & > .col:nth-child(5) {
+    ${({ animationSpeed }) => getLoaderEightCol5({ animationSpeed })}
+  }
+
+  ${getLoaderEightAnimation()}
 `
 
 /* LOADERS END */

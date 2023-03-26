@@ -8,15 +8,44 @@ import {
   getLoaderThreeCss,
   getLoaderThreeAfter,
   getLoaderThreeAnimation,
+  getLoaderFourAnimation,
+  getLoaderFiveAnimation,
+  getLoaderSixAnimation,
+  getLoaderSevenAnimation,
+  getLoaderEightAnimation,
   getLoaderFourCss,
   getLoaderFourCssBall,
   getLoaderFourCssBall2,
   getLoaderFourCssBall3,
-  getLoaderFourAnimation,
+  getLoaderFiveCss,
+  getLoaderFiveCssBall,
+  getLoaderFiveCssBall1,
+  getLoaderFiveCssBall2,
+  getLoaderFiveCssBall3,
+  getLoaderFiveCssBall4,
+  getLoaderSixCss,
+  getLoaderSixCssBall,
+  getLoaderSixCssBall1,
+  getLoaderSixCssBall2,
+  getLoaderSixCssBall3,
+  getLoaderSixCssBall4,
+  getLoaderSevenCss,
+  getLoaderSevenBeforeAfter,
+  getLoaderSevenAfter,
+  getLoaderEightCss,
+  getLoaderEightCol,
+  getLoaderEightCol2,
+  getLoaderEightCol3,
+  getLoaderEightCol4,
+  getLoaderEightCol5,
   LoaderOne,
   LoaderTwo,
   LoaderThree,
   LoaderFour,
+  LoaderFive,
+  LoaderSix,
+  LoaderSeven,
+  LoaderEight,
   DialogOverlay,
   DialogContent,
   // DialogTitle,
@@ -95,6 +124,50 @@ const LoaderCard = ({ loader }) => {
             <span className="ball"></span>
           </LoaderFour>
         )
+      case 5:
+        return (
+          <LoaderFive
+            color={defaultColor}
+            animationSpeed={defaultAnimationSpeed}
+          >
+            <span className="ball"></span>
+            <span className="ball"></span>
+            <span className="ball"></span>
+            <span className="ball"></span>
+          </LoaderFive>
+        )
+      case 6:
+        return (
+          <LoaderSix
+            color={defaultColor}
+            animationSpeed={defaultAnimationSpeed}
+          >
+            <span className="ball"></span>
+            <span className="ball"></span>
+            <span className="ball"></span>
+            <span className="ball"></span>
+          </LoaderSix>
+        )
+      case 7:
+        return (
+          <LoaderSeven
+            color={defaultColor}
+            animationSpeed={defaultAnimationSpeed}
+          />
+        )
+      case 8:
+        return (
+          <LoaderEight
+            color={defaultColor}
+            animationSpeed={defaultAnimationSpeed}
+          >
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div>
+          </LoaderEight>
+        )
       default:
         return (
           <LoaderOne
@@ -112,6 +185,9 @@ const LoaderCard = ({ loader }) => {
     const jsxLabel = "JSX"
     const mainClassName = ".loader"
     const afterClassName = `${mainClassName}:after`
+    // const beforeClassName = `${mainClassName}:before`
+    const beforeAfterClassName = `${mainClassName}:before,
+${mainClassName}:after`
 
     switch (loader) {
       case 1:
@@ -193,11 +269,17 @@ ${getLoaderThreeAnimation()}`}
               label={cssLabel}
               value={`${mainClassName} {${getLoaderFourCss()}}
 
-.loader > .ball {${getLoaderFourCssBall()}}
+.loader > .ball {${getLoaderFourCssBall({
+                color,
+                animationSpeed,
+              })}}
+.loader > .ball:nth-child(2) {${getLoaderFourCssBall2({
+                animationSpeed,
+              })}}
 
-.loader > .ball:nth-child(2) {${getLoaderFourCssBall2()}}
-
-.loader > .ball:nth-child(3) {${getLoaderFourCssBall3()}}
+.loader > .ball:nth-child(3) {${getLoaderFourCssBall3({
+                animationSpeed,
+              })}}
 ${getLoaderFourAnimation()}`}
             />
             <CodeBlock
@@ -217,6 +299,168 @@ ${getLoaderFourAnimation()}`}
   <span className="ball" />
   <span className="ball" />
 </div>`}
+            />
+          </>
+        )
+      case 5:
+        return (
+          <>
+            <CodeBlock
+              label={cssLabel}
+              value={`${mainClassName} {${getLoaderFiveCss()}}
+  
+.loader > .ball {${getLoaderFiveCssBall({
+                color,
+                animationSpeed,
+              })}}
+
+.loader > .ball:nth-child(1) {${getLoaderFiveCssBall1({
+                animationSpeed,
+              })}}
+  
+.loader > .ball:nth-child(2) {${getLoaderFiveCssBall2({
+                animationSpeed,
+              })}}
+  
+.loader > .ball:nth-child(3) {${getLoaderFiveCssBall3({
+                animationSpeed,
+              })}}
+
+.loader > .ball:nth-child(4) {${getLoaderFiveCssBall4({
+                animationSpeed,
+              })}}
+  ${getLoaderFiveAnimation()}`}
+            />
+            <CodeBlock
+              label={htmlLabel}
+              language="html"
+              value={`<div class="loader">
+    <span class="ball"></span>
+    <span class="ball"></span>
+    <span class="ball"></span>
+    <span class="ball"></span>
+  </div>`}
+            />
+            <CodeBlock
+              label={jsxLabel}
+              language="jsx"
+              value={`<div className="loader">
+    <span className="ball" />
+    <span className="ball" />
+    <span className="ball" />
+    <span className="ball" />
+  </div>`}
+            />
+          </>
+        )
+      case 6:
+        return (
+          <>
+            <CodeBlock
+              label={cssLabel}
+              value={`${mainClassName} {${getLoaderSixCss({ animationSpeed })}}
+    
+.loader > .ball {${getLoaderSixCssBall({
+                color,
+              })}}
+  
+.loader > .ball:nth-child(1) {${getLoaderSixCssBall1()}}
+    
+.loader > .ball:nth-child(2) {${getLoaderSixCssBall2()}}
+    
+.loader > .ball:nth-child(3) {${getLoaderSixCssBall3()}}
+  
+.loader > .ball:nth-child(4) {${getLoaderSixCssBall4()}}
+    ${getLoaderSixAnimation()}`}
+            />
+            <CodeBlock
+              label={htmlLabel}
+              language="html"
+              value={`<div class="loader">
+      <span class="ball"></span>
+      <span class="ball"></span>
+      <span class="ball"></span>
+      <span class="ball"></span>
+    </div>`}
+            />
+            <CodeBlock
+              label={jsxLabel}
+              language="jsx"
+              value={`<div className="loader">
+      <span className="ball" />
+      <span className="ball" />
+      <span className="ball" />
+      <span className="ball" />
+    </div>`}
+            />
+          </>
+        )
+      case 7:
+        return (
+          <>
+            <CodeBlock
+              label={cssLabel}
+              value={`${mainClassName} {${getLoaderSevenCss()}}
+  
+${beforeAfterClassName} {${getLoaderSevenBeforeAfter({
+                color,
+                animationSpeed,
+              })}}
+
+${afterClassName} {${getLoaderSevenAfter({ animationSpeed })}}
+${getLoaderSevenAnimation()}`}
+            />
+            <CodeBlock
+              label={htmlLabel}
+              language="html"
+              value={`<div class="loader"></div>`}
+            />
+            <CodeBlock
+              label={jsxLabel}
+              language="jsx"
+              value={`<div className="loader" />`}
+            />
+          </>
+        )
+      case 8:
+        return (
+          <>
+            <CodeBlock
+              label={cssLabel}
+              value={`${mainClassName} {${getLoaderEightCss()}}
+      
+.loader > .col {${getLoaderEightCol({
+                color,
+              })}}
+    
+.loader > .col:nth-child(2) {${getLoaderEightCol2()}}
+      
+.loader > .col:nth-child(3) {${getLoaderEightCol3()}}
+      
+.loader > .col:nth-child(4) {${getLoaderEightCol4()}}
+    
+.loader > .col:nth-child(5) {${getLoaderEightCol5()}}
+      ${getLoaderEightAnimation()}`}
+            />
+            <CodeBlock
+              label={htmlLabel}
+              language="html"
+              value={`<div class="loader">
+        <span class="ball"></span>
+        <span class="ball"></span>
+        <span class="ball"></span>
+        <span class="ball"></span>
+      </div>`}
+            />
+            <CodeBlock
+              label={jsxLabel}
+              language="jsx"
+              value={`<div className="loader">
+        <span className="ball" />
+        <span className="ball" />
+        <span className="ball" />
+        <span className="ball" />
+      </div>`}
             />
           </>
         )
