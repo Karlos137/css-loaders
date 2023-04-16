@@ -617,6 +617,144 @@ export const LoaderEight = styled.div`
   ${getLoaderEightAnimation()}
 `
 
+// Loader Nine
+export const getLoaderNineCss = ({ size = 48 } = {}) => `
+  width: ${size}px;
+  height: ${size}px;
+  position: relative;
+`
+
+export const getLoaderNineSquare = ({
+  size = 12,
+  color = DEFAULT_LOADER_COLORS.colorDialog,
+} = {}) => `
+  position: absolute;
+  width: ${size}px;
+  height: ${size}px;
+  background-color: ${color};
+`
+
+export const getLoaderNineSquare1 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  top: 0;
+  left: 0;
+  animation: move1 ${
+    animationSpeed === "normal"
+      ? "2.2s"
+      : animationSpeed === "slow"
+      ? "2.7s"
+      : animationSpeed === "fast" && "1.7s"
+  } infinite ease-in-out;
+`
+
+export const getLoaderNineSquare2 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  top: 0;
+  right: 0;
+  animation: move2 ${
+    animationSpeed === "normal"
+      ? "2.2s"
+      : animationSpeed === "slow"
+      ? "2.7s"
+      : animationSpeed === "fast" && "1.7s"
+  } infinite ease-in-out;
+`
+
+export const getLoaderNineSquare3 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  bottom: 0;
+  right: 0;
+  animation: move3 ${
+    animationSpeed === "normal"
+      ? "2.2s"
+      : animationSpeed === "slow"
+      ? "2.7s"
+      : animationSpeed === "fast" && "1.7s"
+  } infinite ease-in-out;
+`
+
+export const getLoaderNineSquare4 = ({
+  animationSpeed = DEFAULT_ANIMATION_SPEED,
+} = {}) => `
+  bottom: 0;
+  left: 0;
+  animation: move4 ${
+    animationSpeed === "normal"
+      ? "2.2s"
+      : animationSpeed === "slow"
+      ? "2.7s"
+      : animationSpeed === "fast" && "1.7s"
+  } infinite ease-in-out;
+`
+
+export const getLoaderNineAnimation = () => `
+@keyframes move1 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(24px, 24px);
+  }
+}
+
+@keyframes move2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-24px, 24px);
+  }
+}
+
+@keyframes move3 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-24px, -24px);
+  }
+}
+
+@keyframes move4 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(24px, -24px);
+  }
+}
+`
+
+export const LoaderNine = styled.div`
+  ${getLoaderNineCss()}
+
+  & > .square {
+    ${({ color, animationSpeed }) =>
+      getLoaderNineSquare({ color, animationSpeed })}
+  }
+
+  & > .square:nth-child(1) {
+    ${({ animationSpeed }) => getLoaderNineSquare1({ animationSpeed })}
+  }
+
+  & > .square:nth-child(2) {
+    ${({ animationSpeed }) => getLoaderNineSquare2({ animationSpeed })}
+  }
+
+  & > .square:nth-child(3) {
+    ${({ animationSpeed }) => getLoaderNineSquare3({ animationSpeed })}
+  }
+
+  & > .square:nth-child(4) {
+    ${({ animationSpeed }) => getLoaderNineSquare4({ animationSpeed })}
+  }
+
+  ${getLoaderNineAnimation()}
+`
+
 /* LOADERS END */
 
 export const LoaderCardWrapper = styled.div`

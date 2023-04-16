@@ -38,6 +38,12 @@ import {
   getLoaderEightCol3,
   getLoaderEightCol4,
   getLoaderEightCol5,
+  getLoaderNineCss,
+  getLoaderNineSquare,
+  getLoaderNineSquare1,
+  getLoaderNineSquare2,
+  getLoaderNineSquare3,
+  getLoaderNineSquare4,
   LoaderOne,
   LoaderTwo,
   LoaderThree,
@@ -46,11 +52,13 @@ import {
   LoaderSix,
   LoaderSeven,
   LoaderEight,
+  LoaderNine,
   DialogOverlay,
   DialogContent,
   // DialogTitle,
   DialogDescription,
   CloseButton,
+  getLoaderNineAnimation,
 } from "./LoaderCard.styles"
 import Spacer from "@/styled-components/shared/Spacer"
 
@@ -167,6 +175,18 @@ const LoaderCard = ({ loader }) => {
             <div className="col"></div>
             <div className="col"></div>
           </LoaderEight>
+        )
+      case 9:
+        return (
+          <LoaderNine
+            color={defaultColor}
+            animationSpeed={defaultAnimationSpeed}
+          >
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
+          </LoaderNine>
         )
       default:
         return (
@@ -339,7 +359,7 @@ ${getLoaderFourAnimation()}`}
     <span class="ball"></span>
     <span class="ball"></span>
     <span class="ball"></span>
-  </div>`}
+</div>`}
             />
             <CodeBlock
               label={jsxLabel}
@@ -349,7 +369,7 @@ ${getLoaderFourAnimation()}`}
     <span className="ball" />
     <span className="ball" />
     <span className="ball" />
-  </div>`}
+</div>`}
             />
           </>
         )
@@ -377,21 +397,21 @@ ${getLoaderFourAnimation()}`}
               label={htmlLabel}
               language="html"
               value={`<div class="loader">
-      <span class="ball"></span>
-      <span class="ball"></span>
-      <span class="ball"></span>
-      <span class="ball"></span>
-    </div>`}
+  <span class="ball"></span>
+  <span class="ball"></span>
+  <span class="ball"></span>
+  <span class="ball"></span>
+</div>`}
             />
             <CodeBlock
               label={jsxLabel}
               language="jsx"
               value={`<div className="loader">
-      <span className="ball" />
-      <span className="ball" />
-      <span className="ball" />
-      <span className="ball" />
-    </div>`}
+  <span className="ball" />
+  <span className="ball" />
+  <span className="ball" />
+  <span className="ball" />
+</div>`}
             />
           </>
         )
@@ -431,6 +451,7 @@ ${getLoaderSevenAnimation()}`}
       
 .loader > .col {${getLoaderEightCol({
                 color,
+                animationSpeed,
               })}}
     
 .loader > .col:nth-child(2) {${getLoaderEightCol2()}}
@@ -446,21 +467,66 @@ ${getLoaderSevenAnimation()}`}
               label={htmlLabel}
               language="html"
               value={`<div class="loader">
-        <span class="ball"></span>
-        <span class="ball"></span>
-        <span class="ball"></span>
-        <span class="ball"></span>
-      </div>`}
+  <span class="col"></span>
+  <span class="col"></span>
+  <span class="col"></span>
+  <span class="col"></span>
+  <span class="col"></span>
+</div>`}
             />
             <CodeBlock
               label={jsxLabel}
               language="jsx"
               value={`<div className="loader">
-        <span className="ball" />
-        <span className="ball" />
-        <span className="ball" />
-        <span className="ball" />
-      </div>`}
+  <span className="col" />
+  <span className="col" />
+  <span className="col" />
+  <span className="col" />
+  <span className="col" />
+</div>`}
+            />
+          </>
+        )
+      case 9:
+        return (
+          <>
+            <CodeBlock
+              label={cssLabel}
+              value={`${mainClassName} {${getLoaderNineCss()}}
+        
+.loader > .square {${getLoaderNineSquare({
+                color,
+                animationSpeed,
+              })}}
+      
+.loader > .square:nth-child(1) {${getLoaderNineSquare1(animationSpeed)}}
+
+.loader > .square:nth-child(2) {${getLoaderNineSquare2(animationSpeed)}}
+        
+.loader > .square:nth-child(3) {${getLoaderNineSquare3(animationSpeed)}}
+        
+.loader > .square:nth-child(4) {${getLoaderNineSquare4(animationSpeed)}}
+        ${getLoaderNineAnimation()}`}
+            />
+            <CodeBlock
+              label={htmlLabel}
+              language="html"
+              value={`<div class="loader">
+  <span class="square"></span>
+  <span class="square"></span>
+  <span class="square"></span>
+  <span class="square"></span>
+</div>`}
+            />
+            <CodeBlock
+              label={jsxLabel}
+              language="jsx"
+              value={`<div className="loader">
+  <span className="square" />
+  <span className="square" />
+  <span className="square" />
+  <span className="square" />
+</div>`}
             />
           </>
         )
