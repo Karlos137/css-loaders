@@ -80,4 +80,6 @@ const SelectItem = forwardRef(
   }
 )
 
+SelectItem.displayName = "SelectItem"
+
 export default AnimationSpeedSelect
