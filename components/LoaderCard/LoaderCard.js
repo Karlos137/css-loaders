@@ -499,13 +499,13 @@ ${getLoaderSevenAnimation()}`}
                 animationSpeed,
               })}}
       
-.loader > .square:nth-child(1) {${getLoaderNineSquare1(animationSpeed)}}
+.loader > .square:nth-child(1) {${getLoaderNineSquare1({ animationSpeed })}}
 
-.loader > .square:nth-child(2) {${getLoaderNineSquare2(animationSpeed)}}
+.loader > .square:nth-child(2) {${getLoaderNineSquare2({ animationSpeed })}}
         
-.loader > .square:nth-child(3) {${getLoaderNineSquare3(animationSpeed)}}
+.loader > .square:nth-child(3) {${getLoaderNineSquare3({ animationSpeed })}}
         
-.loader > .square:nth-child(4) {${getLoaderNineSquare4(animationSpeed)}}
+.loader > .square:nth-child(4) {${getLoaderNineSquare4({ animationSpeed })}}
         ${getLoaderNineAnimation()}`}
             />
             <CodeBlock
